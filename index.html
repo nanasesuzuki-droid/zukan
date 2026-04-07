@@ -12,12 +12,7 @@
 <title>my zukan</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap');
-:root {
-  --purple:#6c63b6;--purple-light:#eeeaff;--purple-mid:#a89edf;--purple-dark:#3d3785;
-  --bg:#faf9f6;--bg2:#f2f0eb;--text:#1e1c2e;--text2:#6b6880;--text3:#aaa8bb;
-  --border:rgba(108,99,182,0.12);--border2:rgba(108,99,182,0.22);
-  --radius:16px;--radius-sm:10px;--font:'M PLUS Rounded 1c',sans-serif;
-}
+:root{--purple:#6c63b6;--purple-light:#eeeaff;--purple-mid:#a89edf;--purple-dark:#3d3785;--bg:#faf9f6;--bg2:#f2f0eb;--text:#1e1c2e;--text2:#6b6880;--text3:#aaa8bb;--border:rgba(108,99,182,0.12);--border2:rgba(108,99,182,0.22);--radius:16px;--radius-sm:10px;--font:'M PLUS Rounded 1c',sans-serif;}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html,body{height:100%;background:var(--bg);font-family:var(--font);color:var(--text);overscroll-behavior:none;}
 #app{max-width:430px;margin:0 auto;height:100dvh;display:flex;flex-direction:column;position:relative;overflow:hidden;}
@@ -53,13 +48,13 @@ html,body{height:100%;background:var(--bg);font-family:var(--font);color:var(--t
 .user-name{font-size:14px;font-weight:500;}
 .user-count{font-size:11px;color:var(--text3);margin-top:1px;}
 .cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding-top:8px;}
-.cat-card{background:white;border-radius:var(--radius);border:1px solid var(--border);padding:16px 14px;cursor:pointer;position:relative;overflow:hidden;user-select:none;}
-.cat-card:active{opacity:0.8;}
-.cat-card::before{content:'';position:absolute;top:-20px;right:-20px;width:70px;height:70px;border-radius:50%;background:var(--purple-light);opacity:0.6;}
-.cat-emoji{font-size:28px;margin-bottom:10px;display:block;position:relative;}
-.cat-name{font-size:13px;font-weight:700;color:var(--text);display:block;margin-bottom:3px;position:relative;}
-.cat-count{font-size:11px;color:var(--text2);display:block;margin-bottom:8px;position:relative;}
-.pbar-wrap{height:4px;background:var(--border);border-radius:2px;overflow:hidden;position:relative;}
+.cat-card{background:white;border-radius:var(--radius);border:1px solid var(--border);padding:16px 14px;cursor:pointer;position:relative;overflow:hidden;user-select:none;-webkit-user-select:none;}
+.cat-card:active{opacity:0.7;}
+.cat-bg{position:absolute;top:-20px;right:-20px;width:70px;height:70px;border-radius:50%;background:var(--purple-light);opacity:0.6;pointer-events:none;}
+.cat-emoji{font-size:28px;margin-bottom:10px;display:block;position:relative;pointer-events:none;}
+.cat-name{font-size:13px;font-weight:700;color:var(--text);display:block;margin-bottom:3px;position:relative;pointer-events:none;}
+.cat-count{font-size:11px;color:var(--text2);display:block;margin-bottom:8px;position:relative;pointer-events:none;}
+.pbar-wrap{height:4px;background:var(--border);border-radius:2px;overflow:hidden;position:relative;pointer-events:none;}
 .pbar-fill{height:100%;border-radius:2px;background:var(--purple);}
 .cat-add{background:transparent!important;border:1.5px dashed var(--border2)!important;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:120px;}
 .cat-add-icon{font-size:20px;color:var(--text3);}
@@ -76,15 +71,15 @@ html,body{height:100%;background:var(--bg);font-family:var(--font);color:var(--t
 .slot.empty-add{border-color:var(--purple-mid);background:var(--purple-light);}
 .slot-img{width:100%;height:100%;object-fit:cover;}
 .slot-emoji-display{font-size:32px;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--bg2);}
-.slot-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.5));color:white;font-size:9px;padding:10px 5px 4px;text-align:center;font-weight:500;}
-.slot-plus{font-size:22px;color:var(--purple);}
-.slot-dot{font-size:16px;color:var(--text3);opacity:0.4;}
+.slot-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.5));color:white;font-size:9px;padding:10px 5px 4px;text-align:center;font-weight:500;pointer-events:none;}
+.slot-plus{font-size:22px;color:var(--purple);pointer-events:none;}
+.slot-dot{font-size:16px;color:var(--text3);opacity:0.4;pointer-events:none;}
 .reg-inner{padding:0 16px 120px;}
 .photo-area{width:100%;aspect-ratio:1;background:var(--bg2);border-radius:var(--radius);border:2px dashed var(--border2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;cursor:pointer;margin-bottom:20px;overflow:hidden;position:relative;}
 .photo-area.taken{border-style:solid;border-color:var(--purple-mid);}
-.photo-area-icon{font-size:36px;}
-.photo-area-text{font-size:12px;color:var(--text2);}
-.photo-preview{width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;}
+.photo-area-icon{font-size:36px;pointer-events:none;}
+.photo-area-text{font-size:12px;color:var(--text2);pointer-events:none;}
+.photo-preview{width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;pointer-events:none;}
 .field-label{font-size:11px;color:var(--text2);margin-bottom:6px;font-weight:500;}
 .field-input{width:100%;padding:12px 14px;border-radius:var(--radius-sm);border:1.5px solid var(--border2);background:white;font-size:15px;font-family:var(--font);color:var(--text);outline:none;margin-bottom:14px;}
 .field-input:focus{border-color:var(--purple);}
@@ -255,7 +250,7 @@ const DB={getUsers(){return JSON.parse(localStorage.getItem('zukan_users')||'[]'
 const DEFAULT_CATS=[{id:'hana',emoji:'🌸',name:'おはな',slots:20,items:[]},{id:'kumo',emoji:'☁️',name:'そら・くも',slots:15,items:[]},{id:'food',emoji:'🍽️',name:'たべもの',slots:30,items:[]},{id:'place',emoji:'🏛️',name:'いったばしょ',slots:20,items:[]}];
 const PRESET_EMOJIS=['🌸','🌿','🍂','🐝','🦋','🐚','☁️','⭐','🌙','🌈','🍜','🍩','🎂','🍵','🏛️','⛩️','🏖️','🏔️','📚','🎨','🎵','🐈','🐕','🦊','🌺','🍄'];
 let currentUser=null,userData=null,currentCatId=null,selectedEmoji=PRESET_EMOJIS[0],photoDataURL=null;
-function tap(el,fn){if(!el)return;let moved=false;el.addEventListener('touchstart',()=>{moved=false;},{passive:true});el.addEventListener('touchmove',()=>{moved=true;},{passive:true});el.addEventListener('touchend',e=>{if(!moved){e.preventDefault();fn(e);}});el.addEventListener('click',fn);}
+function tap(el,fn){if(!el)return;el.addEventListener('touchend',function(e){e.preventDefault();e.stopPropagation();fn(e);},{passive:false});el.addEventListener('click',fn);}
 function init(){const saved=DB.getCurrentUser();if(saved){const d=DB.getUserData(saved);if(d){loginAs(saved,d);return;}}showLogin();bindLoginEvents();}
 function bindLoginEvents(){tap(document.getElementById('btn-create-user'),createUser);document.getElementById('new-name-input').addEventListener('keydown',e=>{if(e.key==='Enter')createUser();});}
 function showLogin(){document.getElementById('login-screen').classList.remove('hidden');document.getElementById('main-screen').classList.add('hidden');renderUserList();}
@@ -267,7 +262,7 @@ function bindMainEvents(){document.querySelectorAll('.nav-item').forEach(el=>{ta
 function logout(){DB.clearCurrentUser();currentUser=null;userData=null;showLogin();}
 function saveData(){DB.saveUserData(currentUser,userData);}
 function switchTab(tab){document.querySelectorAll('.tab-content').forEach(el=>el.classList.add('hidden'));document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));const tabEl=document.getElementById('tab-'+tab);const navEl=document.getElementById('nav-'+tab);if(tabEl)tabEl.classList.remove('hidden');if(navEl)navEl.classList.add('active');if(tab==='home')renderHome();if(tab==='friends')renderFriends();if(tab==='profile')renderProfile();}
-function renderHome(){document.getElementById('home-title').textContent=`${currentUser}のずかん`;const total=userData.categories.reduce((s,c)=>s+c.items.length,0);document.getElementById('home-sub').textContent=`${total}こ集めた`;const grid=document.getElementById('cat-grid');grid.innerHTML='';userData.categories.forEach(cat=>{const pct=Math.round(cat.items.length/cat.slots*100);const el=document.createElement('div');el.className='cat-card';el.innerHTML=`<span class="cat-emoji">${cat.emoji}</span><span class="cat-name">${cat.name}</span><span class="cat-count">${cat.items.length} / ${cat.slots}</span><div class="pbar-wrap"><div class="pbar-fill" style="width:${pct}%"></div></div>`;tap(el,()=>showCat(cat.id));grid.appendChild(el);});const addEl=document.createElement('div');addEl.className='cat-card cat-add';addEl.innerHTML=`<span class="cat-add-icon">＋</span><span class="cat-add-text">カテゴリを追加</span>`;tap(addEl,openAddCatModal);grid.appendChild(addEl);}
+function renderHome(){document.getElementById('home-title').textContent=`${currentUser}のずかん`;const total=userData.categories.reduce((s,c)=>s+c.items.length,0);document.getElementById('home-sub').textContent=`${total}こ集めた`;const grid=document.getElementById('cat-grid');grid.innerHTML='';userData.categories.forEach(cat=>{const pct=Math.round(cat.items.length/cat.slots*100);const el=document.createElement('div');el.className='cat-card';el.innerHTML=`<div class="cat-bg"></div><span class="cat-emoji">${cat.emoji}</span><span class="cat-name">${cat.name}</span><span class="cat-count">${cat.items.length} / ${cat.slots}</span><div class="pbar-wrap"><div class="pbar-fill" style="width:${pct}%"></div></div>`;tap(el,()=>showCat(cat.id));grid.appendChild(el);});const addEl=document.createElement('div');addEl.className='cat-card cat-add';addEl.innerHTML=`<span class="cat-add-icon">＋</span><span class="cat-add-text">カテゴリを追加</span>`;tap(addEl,openAddCatModal);grid.appendChild(addEl);}
 function showHome(){document.querySelectorAll('.tab-content').forEach(el=>el.classList.add('hidden'));document.getElementById('tab-home').classList.remove('hidden');renderHome();}
 function showCat(catId){currentCatId=catId;const cat=userData.categories.find(c=>c.id===catId);document.querySelectorAll('.tab-content').forEach(el=>el.classList.add('hidden'));document.getElementById('tab-cat').classList.remove('hidden');document.getElementById('cat-detail-emoji').textContent=cat.emoji;document.getElementById('cat-detail-name').textContent=cat.name;const rem=cat.slots-cat.items.length;document.getElementById('cat-detail-meta').textContent=`${cat.items.length}こ集めた　あと${rem}こ空白`;document.getElementById('cat-detail-pbar').style.width=Math.round(cat.items.length/cat.slots*100)+'%';const grid=document.getElementById('slot-grid');grid.innerHTML='';cat.items.forEach(item=>{const el=document.createElement('div');el.className='slot filled';el.innerHTML=item.photo?`<img class="slot-img" src="${item.photo}" alt=""><div class="slot-label">${item.name}</div>`:`<div class="slot-emoji-display">${cat.emoji}</div><div class="slot-label">${item.name}</div>`;grid.appendChild(el);});const empties=cat.slots-cat.items.length;for(let i=0;i<Math.min(empties,9);i++){const el=document.createElement('div');if(i===0){el.className='slot empty empty-add';el.innerHTML=`<span class="slot-plus">＋</span>`;tap(el,showRegister);}else{el.className='slot empty';el.innerHTML=`<span class="slot-dot">・</span>`;}grid.appendChild(el);}}
 function showRegister(){photoDataURL=null;document.getElementById('photo-preview').classList.add('hidden');document.getElementById('photo-area').classList.remove('taken');document.getElementById('reg-name').value='';document.getElementById('reg-memo').value='';document.querySelectorAll('.tab-content').forEach(el=>el.classList.add('hidden'));document.getElementById('tab-register').classList.remove('hidden');}
