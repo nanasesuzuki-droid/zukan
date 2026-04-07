@@ -7,228 +7,211 @@
 <meta name="theme-color" content="#6c63b6">
 <title>my zukan</title>
 <style>
-:root{--purple:#6c63b6;--purple-light:#eeeaff;--purple-dark:#3d3785;--bg:#faf9f6;--bg2:#f2f0eb;--text:#1e1c2e;--text2:#6b6880;--text3:#aaa8bb;--border:rgba(108,99,182,0.12);--border2:rgba(108,99,182,0.22);--radius:16px;--radius-sm:10px;}
-*{box-sizing:border-box;margin:0;padding:0;}
-html,body{height:100%;background:var(--bg);font-family:sans-serif;color:var(--text);}
+:root{--p:#6c63b6;--pl:#eeeaff;--pd:#3d3785;--bg:#faf9f6;--bg2:#f2f0eb;--t:#1e1c2e;--t2:#6b6880;--t3:#aaa8bb;--b:rgba(108,99,182,0.12);--b2:rgba(108,99,182,0.22);}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;background:var(--bg);font-family:sans-serif;color:var(--t);touch-action:manipulation;}
 #app{max-width:430px;margin:0 auto;height:100dvh;display:flex;flex-direction:column;overflow:hidden;}
 .screen{flex:1;display:flex;flex-direction:column;overflow:hidden;}
-.screen.hidden{display:none!important;}
+.screen.hidden,.tab-content.hidden{display:none!important;}
 .scroll-area{flex:1;overflow-y:auto;padding:0 16px 100px;}
 .topbar{padding:52px 20px 16px;}
 .topbar-title{font-size:24px;font-weight:700;}
-.topbar-sub{font-size:12px;color:var(--text2);margin-top:4px;}
-.topbar-back{font-size:13px;color:var(--purple);padding:8px 20px;cursor:pointer;}
-.bottom-nav{padding:8px 0 16px;background:var(--bg);border-top:1px solid var(--border);display:flex;z-index:10;}
-.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 0;}
+.topbar-sub{font-size:12px;color:var(--t2);margin-top:4px;}
+.back-btn{display:inline-block;font-size:13px;color:var(--p);padding:16px 20px 8px;cursor:pointer;background:none;border:none;-webkit-appearance:none;}
+.bottom-nav{padding:8px 0 20px;background:var(--bg);border-top:1px solid var(--b);display:flex;z-index:10;}
+.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 0;background:none;border:none;cursor:pointer;-webkit-appearance:none;}
 .nav-icon{width:24px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:8px;font-size:16px;}
-.nav-label{font-size:10px;color:var(--text3);}
-.nav-item.active .nav-icon{background:var(--purple-light);}
-.nav-item.active .nav-label{color:var(--purple);}
+.nav-label{font-size:10px;color:var(--t3);}
+.nav-btn.active .nav-icon{background:var(--pl);}
+.nav-btn.active .nav-label{color:var(--p);}
 .login-inner{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 32px;}
-.login-logo{width:80px;height:80px;background:var(--purple-light);border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:40px;margin-bottom:24px;}
-.login-title{font-size:28px;font-weight:700;color:var(--purple-dark);margin-bottom:8px;}
-.login-tagline{font-size:13px;color:var(--text2);text-align:center;line-height:1.6;margin-bottom:40px;}
-.login-section-title{font-size:12px;color:var(--text2);align-self:flex-start;margin-bottom:8px;}
-.login-input{width:100%;padding:14px 16px;border-radius:var(--radius-sm);border:1.5px solid var(--border2);background:white;font-size:16px;color:var(--text);outline:none;margin-bottom:12px;}
-.btn-primary{width:100%;padding:14px;border-radius:var(--radius-sm);background:var(--purple);color:white;font-size:15px;font-weight:700;border:none;}
-.login-divider{display:flex;align-items:center;gap:12px;width:100%;margin:16px 0;}
-.login-divider span{font-size:11px;color:var(--text3);}
-.login-divider::before,.login-divider::after{content:'';flex:1;height:1px;background:var(--border);}
+.login-logo{width:80px;height:80px;background:var(--pl);border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:40px;margin-bottom:24px;}
+.login-title{font-size:28px;font-weight:700;color:var(--pd);margin-bottom:8px;}
+.login-tagline{font-size:13px;color:var(--t2);text-align:center;line-height:1.6;margin-bottom:40px;}
+.sec-title{font-size:12px;color:var(--t2);align-self:flex-start;margin-bottom:8px;}
+.inp{width:100%;padding:14px 16px;border-radius:10px;border:1.5px solid var(--b2);background:white;font-size:16px;color:var(--t);outline:none;margin-bottom:12px;-webkit-appearance:none;}
+.btn{width:100%;padding:14px;border-radius:10px;background:var(--p);color:white;font-size:15px;font-weight:700;border:none;cursor:pointer;-webkit-appearance:none;}
+.divider{display:flex;align-items:center;gap:12px;width:100%;margin:16px 0;}
+.divider span{font-size:11px;color:var(--t3);}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--b);}
 .user-list{width:100%;display:flex;flex-direction:column;gap:8px;}
-.user-item{display:flex;align-items:center;gap:12px;padding:12px 14px;background:white;border-radius:var(--radius-sm);border:1px solid var(--border);}
-.user-avatar{width:36px;height:36px;border-radius:50%;background:var(--purple-light);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--purple-dark);flex-shrink:0;}
-.user-name{font-size:14px;font-weight:500;}
-.user-count{font-size:11px;color:var(--text3);}
+.user-btn{display:flex;align-items:center;gap:12px;padding:12px 14px;background:white;border-radius:10px;border:1px solid var(--b);width:100%;cursor:pointer;-webkit-appearance:none;text-align:left;}
+.user-av{width:36px;height:36px;border-radius:50%;background:var(--pl);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--pd);flex-shrink:0;}
+.user-name{font-size:14px;font-weight:500;color:var(--t);}
+.user-count{font-size:11px;color:var(--t3);}
 .cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding-top:8px;}
-.cat-card{background:white;border-radius:var(--radius);border:1px solid var(--border);padding:16px 14px;position:relative;}
-.cat-card:active{background:var(--purple-light);}
+.cat-btn{background:white;border-radius:16px;border:1px solid var(--b);padding:16px 14px;cursor:pointer;-webkit-appearance:none;text-align:left;width:100%;display:block;}
+.cat-btn:active{background:var(--pl);}
 .cat-emoji{font-size:28px;margin-bottom:10px;display:block;}
-.cat-name{font-size:13px;font-weight:700;display:block;margin-bottom:3px;}
-.cat-count{font-size:11px;color:var(--text2);display:block;margin-bottom:8px;}
-.pbar-wrap{height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
-.pbar-fill{height:100%;border-radius:2px;background:var(--purple);}
-.cat-add{background:transparent!important;border:1.5px dashed var(--border2)!important;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:120px;}
-.cat-add-icon{font-size:20px;color:var(--text3);}
-.cat-add-text{font-size:12px;color:var(--text3);}
-.collection-header{display:flex;align-items:center;gap:10px;padding:0 16px;}
-.collection-emoji{font-size:28px;}
-.collection-title{font-size:20px;font-weight:700;}
-.collection-meta{font-size:11px;color:var(--text2);margin:4px 16px 12px;}
-.pbar-wrap-full{height:4px;background:var(--border);border-radius:2px;margin:0 16px 16px;overflow:hidden;}
+.cat-name{font-size:13px;font-weight:700;display:block;margin-bottom:3px;color:var(--t);}
+.cat-count{font-size:11px;color:var(--t2);display:block;margin-bottom:8px;}
+.pbar{height:4px;background:var(--b);border-radius:2px;overflow:hidden;}
+.pfill{height:100%;border-radius:2px;background:var(--p);}
+.cat-add{background:transparent!important;border:1.5px dashed var(--b2)!important;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:120px;}
+.cat-add span{color:var(--t3);font-size:12px;}
+.col-header{display:flex;align-items:center;gap:10px;padding:0 16px 4px;}
+.col-emoji{font-size:28px;}
+.col-title{font-size:20px;font-weight:700;}
+.col-meta{font-size:11px;color:var(--t2);padding:0 16px 12px;}
+.pbar-full{height:4px;background:var(--b);border-radius:2px;margin:0 16px 16px;overflow:hidden;}
 .slot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding-top:8px;}
-.slot{aspect-ratio:1;border-radius:var(--radius-sm);overflow:hidden;position:relative;}
+.slot{aspect-ratio:1;border-radius:10px;overflow:hidden;position:relative;}
 .slot.filled{background:var(--bg2);}
-.slot.empty{background:white;border:1.5px dashed var(--border2);display:flex;align-items:center;justify-content:center;}
-.slot.empty-add{border-color:var(--purple);background:var(--purple-light);}
+.slot.empty{background:white;border:1.5px dashed var(--b2);display:flex;align-items:center;justify-content:center;}
+.slot-add{border-color:var(--p)!important;background:var(--pl)!important;cursor:pointer;-webkit-appearance:none;width:100%;aspect-ratio:1;border-radius:10px;border:1.5px dashed var(--p);background:var(--pl);display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--p);}
 .slot-img{width:100%;height:100%;object-fit:cover;}
-.slot-emoji-display{font-size:32px;width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
+.slot-emoji{font-size:32px;width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
 .slot-label{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.4);color:white;font-size:9px;padding:4px;text-align:center;}
-.slot-plus{font-size:22px;color:var(--purple);}
-.slot-dot{font-size:16px;color:var(--text3);opacity:0.4;}
-.reg-inner{padding:16px;}
-.photo-area{width:100%;aspect-ratio:1;background:var(--bg2);border-radius:var(--radius);border:2px dashed var(--border2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;margin-bottom:20px;overflow:hidden;position:relative;}
-.photo-area.taken{border-style:solid;border-color:var(--purple);}
-.photo-area-icon{font-size:36px;}
-.photo-area-text{font-size:12px;color:var(--text2);}
-.photo-preview{width:100%;height:100%;object-fit:cover;position:absolute;}
-.field-label{font-size:11px;color:var(--text2);margin-bottom:6px;}
-.field-input{width:100%;padding:12px 14px;border-radius:var(--radius-sm);border:1.5px solid var(--border2);background:white;font-size:15px;color:var(--text);outline:none;margin-bottom:14px;}
-.field-textarea{width:100%;padding:12px 14px;border-radius:var(--radius-sm);border:1.5px solid var(--border2);background:white;font-size:14px;color:var(--text);outline:none;margin-bottom:20px;min-height:80px;resize:none;}
-.save-btn{width:100%;padding:15px;border-radius:var(--radius-sm);background:var(--purple);color:white;font-size:15px;font-weight:700;border:none;}
-#camera-input{display:none;}
-.profile-header{background:var(--purple-light);border-radius:var(--radius);padding:20px;text-align:center;margin-bottom:16px;}
-.profile-avatar-big{width:64px;height:64px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;color:white;margin:0 auto 12px;}
-.profile-name{font-size:20px;font-weight:700;color:var(--purple-dark);}
-.profile-code{font-size:12px;color:var(--purple);margin-top:4px;}
-.stats-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px;}
-.stat-card{background:white;border-radius:var(--radius-sm);border:1px solid var(--border);padding:12px;text-align:center;}
-.stat-num{font-size:22px;font-weight:700;color:var(--purple-dark);}
-.stat-label{font-size:10px;color:var(--text2);margin-top:2px;}
-.logout-btn{width:100%;padding:13px;border-radius:var(--radius-sm);background:white;color:var(--text2);font-size:14px;border:1px solid var(--border);margin-top:8px;}
-.friend-code-box{background:var(--purple-light);border-radius:var(--radius);padding:16px;text-align:center;margin-bottom:16px;}
-.friend-code-label{font-size:11px;color:var(--purple);font-weight:500;margin-bottom:6px;}
-.friend-code{font-size:22px;font-weight:700;color:var(--purple-dark);letter-spacing:4px;}
-.friend-code-hint{font-size:10px;color:var(--text3);margin-top:6px;}
-.add-friend-row{display:flex;gap:8px;margin-bottom:16px;}
-.add-friend-input{flex:1;padding:12px 14px;border-radius:var(--radius-sm);border:1.5px solid var(--border2);background:white;font-size:14px;color:var(--text);outline:none;}
-.add-friend-btn{padding:12px 16px;border-radius:var(--radius-sm);background:var(--purple);color:white;font-size:13px;font-weight:700;border:none;white-space:nowrap;}
-.friends-list{display:flex;flex-direction:column;gap:10px;}
-.friend-card{display:flex;align-items:center;gap:12px;background:white;border-radius:var(--radius);border:1px solid var(--border);padding:14px 16px;}
-.friend-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;flex-shrink:0;}
-.friend-name{font-size:14px;font-weight:700;}
-.friend-status{font-size:11px;color:var(--text2);margin-top:2px;}
-.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#3d3785;color:white;font-size:13px;padding:10px 20px;border-radius:20px;white-space:nowrap;opacity:0;transition:opacity 0.25s;pointer-events:none;z-index:100;}
+.reg-wrap{padding:16px;}
+.photo-btn{width:100%;aspect-ratio:1;background:var(--bg2);border-radius:16px;border:2px dashed var(--b2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;margin-bottom:20px;overflow:hidden;position:relative;cursor:pointer;-webkit-appearance:none;}
+.photo-btn.taken{border-style:solid;border-color:var(--p);}
+.photo-prev{width:100%;height:100%;object-fit:cover;position:absolute;}
+.lbl{font-size:11px;color:var(--t2);margin-bottom:6px;}
+.tinp{width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid var(--b2);background:white;font-size:15px;color:var(--t);outline:none;margin-bottom:14px;-webkit-appearance:none;}
+.tarea{width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid var(--b2);background:white;font-size:14px;color:var(--t);outline:none;margin-bottom:20px;min-height:80px;resize:none;}
+.save-btn{width:100%;padding:15px;border-radius:10px;background:var(--p);color:white;font-size:15px;font-weight:700;border:none;cursor:pointer;-webkit-appearance:none;}
+#cam{display:none;}
+.code-box{background:var(--pl);border-radius:16px;padding:16px;text-align:center;margin-bottom:16px;}
+.code-lbl{font-size:11px;color:var(--p);font-weight:500;margin-bottom:6px;}
+.code-val{font-size:22px;font-weight:700;color:var(--pd);letter-spacing:4px;}
+.code-hint{font-size:10px;color:var(--t3);margin-top:6px;}
+.fr-row{display:flex;gap:8px;margin-bottom:16px;}
+.fr-inp{flex:1;padding:12px 14px;border-radius:10px;border:1.5px solid var(--b2);background:white;font-size:14px;color:var(--t);outline:none;}
+.fr-btn{padding:12px 16px;border-radius:10px;background:var(--p);color:white;font-size:13px;font-weight:700;border:none;cursor:pointer;-webkit-appearance:none;}
+.fr-list{display:flex;flex-direction:column;gap:10px;}
+.fr-card{display:flex;align-items:center;gap:12px;background:white;border-radius:16px;border:1px solid var(--b);padding:14px 16px;}
+.fr-av{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;flex-shrink:0;}
+.fr-name{font-size:14px;font-weight:700;}
+.fr-status{font-size:11px;color:var(--t2);margin-top:2px;}
+.prof-head{background:var(--pl);border-radius:16px;padding:20px;text-align:center;margin-bottom:16px;}
+.prof-av{width:64px;height:64px;border-radius:50%;background:var(--p);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;color:white;margin:0 auto 12px;}
+.prof-name{font-size:20px;font-weight:700;color:var(--pd);}
+.prof-code{font-size:12px;color:var(--p);margin-top:4px;}
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px;}
+.stat{background:white;border-radius:10px;border:1px solid var(--b);padding:12px;text-align:center;}
+.stat-n{font-size:22px;font-weight:700;color:var(--pd);}
+.stat-l{font-size:10px;color:var(--t2);margin-top:2px;}
+.lo-btn{width:100%;padding:13px;border-radius:10px;background:white;color:var(--t2);font-size:14px;border:1px solid var(--b);margin-top:8px;cursor:pointer;-webkit-appearance:none;}
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:var(--pd);color:white;font-size:13px;padding:10px 20px;border-radius:20px;white-space:nowrap;opacity:0;transition:opacity 0.25s;pointer-events:none;z-index:100;}
 .toast.show{opacity:1;}
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:50;display:flex;align-items:flex-end;justify-content:center;}
-.modal-overlay.hidden{display:none!important;}
-.modal-sheet{background:var(--bg);border-radius:24px 24px 0 0;padding:24px 20px 40px;width:100%;max-width:430px;}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:50;display:flex;align-items:flex-end;justify-content:center;}
+.modal.hidden{display:none!important;}
+.modal-inner{background:var(--bg);border-radius:24px 24px 0 0;padding:24px 20px 40px;width:100%;max-width:430px;}
 .modal-title{font-size:18px;font-weight:700;margin-bottom:16px;}
-.modal-emoji-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:16px;}
-.emoji-btn{width:100%;aspect-ratio:1;border-radius:10px;border:1.5px solid var(--border);background:white;font-size:20px;display:flex;align-items:center;justify-content:center;}
-.emoji-btn.selected{border-color:var(--purple);background:var(--purple-light);}
+.emoji-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:16px;}
+.e-btn{width:100%;aspect-ratio:1;border-radius:10px;border:1.5px solid var(--b);background:white;font-size:20px;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-appearance:none;}
+.e-btn.on{border-color:var(--p);background:var(--pl);}
 </style>
 </head>
 <body>
 <div id="app">
-  <div id="login-screen" class="screen">
+  <div id="s-login" class="screen">
     <div class="login-inner">
       <div class="login-logo">📖</div>
       <div class="login-title">my zukan</div>
       <div class="login-tagline">自分の目で見つけた<br>自分だけの図鑑をつくろう</div>
-      <div class="login-section-title">あたらしくはじめる</div>
-      <input class="login-input" id="new-name-input" placeholder="なまえを入力（例：なな）" maxlength="20">
-      <button class="btn-primary" id="btn-create-user">はじめる →</button>
-      <div id="existing-users-section" class="hidden" style="width:100%">
-        <div class="login-divider"><span>または</span></div>
-        <div class="login-section-title">つづきから</div>
+      <div class="sec-title">あたらしくはじめる</div>
+      <input class="inp" id="inp-name" placeholder="なまえを入力（例：なな）" maxlength="20">
+      <button class="btn" id="btn-start">はじめる →</button>
+      <div id="s-users" class="hidden" style="width:100%">
+        <div class="divider"><span>または</span></div>
+        <div class="sec-title">つづきから</div>
         <div class="user-list" id="user-list"></div>
       </div>
     </div>
   </div>
-  <div id="main-screen" class="screen hidden">
-    <div id="tab-home" class="tab-content">
-      <div class="topbar"><div class="topbar-title" id="home-title">my zukan</div><div class="topbar-sub" id="home-sub"></div></div>
+  <div id="s-main" class="screen hidden">
+    <div id="t-home" class="tab-content">
+      <div class="topbar"><div class="topbar-title" id="h-title">my zukan</div><div class="topbar-sub" id="h-sub"></div></div>
       <div class="scroll-area"><div class="cat-grid" id="cat-grid"></div></div>
     </div>
-    <div id="tab-cat" class="tab-content hidden">
-      <div class="topbar-back" id="btn-back-cat">← もどる</div>
-      <div class="collection-header"><span class="collection-emoji" id="cat-detail-emoji"></span><span class="collection-title" id="cat-detail-name"></span></div>
-      <div class="collection-meta" id="cat-detail-meta"></div>
-      <div class="pbar-wrap-full"><div class="pbar-fill" id="cat-detail-pbar" style="width:0%"></div></div>
+    <div id="t-cat" class="tab-content hidden">
+      <button class="back-btn" id="btn-back-cat">← もどる</button>
+      <div class="col-header"><span class="col-emoji" id="c-emoji"></span><span class="col-title" id="c-name"></span></div>
+      <div class="col-meta" id="c-meta"></div>
+      <div class="pbar-full"><div class="pfill" id="c-pbar" style="width:0%"></div></div>
       <div class="scroll-area" style="padding-top:0"><div class="slot-grid" id="slot-grid"></div></div>
     </div>
-    <div id="tab-register" class="tab-content hidden">
-      <div class="topbar-back" id="btn-back-reg">← もどる</div>
-      <div class="scroll-area reg-inner">
-        <div class="photo-area" id="photo-area">
-          <span class="photo-area-icon">📷</span>
-          <span class="photo-area-text">タップして写真を選ぶ</span>
-          <img id="photo-preview" class="photo-preview hidden" alt="">
-        </div>
-        <input type="file" accept="image/*" id="camera-input">
-        <div class="field-label">なまえ</div>
-        <input class="field-input" id="reg-name" placeholder="例：アイスクリーム雲">
-        <div class="field-label">メモ</div>
-        <textarea class="field-textarea" id="reg-memo" placeholder="見つけた場所、気づいたこと..."></textarea>
-        <button class="save-btn" id="btn-save-item">コレクションに追加する</button>
+    <div id="t-reg" class="tab-content hidden">
+      <button class="back-btn" id="btn-back-reg">← もどる</button>
+      <div class="scroll-area reg-wrap">
+        <button class="photo-btn" id="photo-btn">
+          <span style="font-size:36px">📷</span>
+          <span style="font-size:12px;color:var(--t2)">タップして写真を選ぶ</span>
+          <img id="photo-prev" class="photo-prev hidden" alt="">
+        </button>
+        <input type="file" accept="image/*" id="cam">
+        <div class="lbl">なまえ</div>
+        <input class="tinp" id="reg-name" placeholder="例：アイスクリーム雲">
+        <div class="lbl">メモ</div>
+        <textarea class="tarea" id="reg-memo" placeholder="見つけた場所、気づいたこと..."></textarea>
+        <button class="save-btn" id="btn-save">コレクションに追加する</button>
       </div>
     </div>
-    <div id="tab-friends" class="tab-content hidden">
+    <div id="t-friends" class="tab-content hidden">
       <div class="topbar"><div class="topbar-title">フレンド</div></div>
       <div class="scroll-area">
-        <div class="friend-code-box">
-          <div class="friend-code-label">あなたのフレンドコード</div>
-          <div class="friend-code" id="my-friend-code">----</div>
-          <div class="friend-code-hint">友達に教えよう</div>
-        </div>
-        <div class="add-friend-row">
-          <input class="add-friend-input" id="friend-code-input" placeholder="フレンドのコードを入力">
-          <button class="add-friend-btn" id="btn-add-friend">追加</button>
-        </div>
-        <div class="friends-list" id="friends-list"></div>
+        <div class="code-box"><div class="code-lbl">あなたのフレンドコード</div><div class="code-val" id="my-code">----</div><div class="code-hint">友達に教えよう</div></div>
+        <div class="fr-row"><input class="fr-inp" id="fr-inp" placeholder="フレンドのコードを入力"><button class="fr-btn" id="btn-add-fr">追加</button></div>
+        <div class="fr-list" id="fr-list"></div>
       </div>
     </div>
-    <div id="tab-profile" class="tab-content hidden">
+    <div id="t-profile" class="tab-content hidden">
       <div class="topbar"><div class="topbar-title">じぶん</div></div>
       <div class="scroll-area">
-        <div class="profile-header">
-          <div class="profile-avatar-big" id="profile-avatar"></div>
-          <div class="profile-name" id="profile-name-display"></div>
-          <div class="profile-code" id="profile-code-display"></div>
+        <div class="prof-head"><div class="prof-av" id="p-av"></div><div class="prof-name" id="p-name"></div><div class="prof-code" id="p-code"></div></div>
+        <div class="stats">
+          <div class="stat"><div class="stat-n" id="st-tot">0</div><div class="stat-l">合計</div></div>
+          <div class="stat"><div class="stat-n" id="st-cat">0</div><div class="stat-l">カテゴリ</div></div>
+          <div class="stat"><div class="stat-n" id="st-fr">0</div><div class="stat-l">フレンド</div></div>
         </div>
-        <div class="stats-grid">
-          <div class="stat-card"><div class="stat-num" id="stat-total">0</div><div class="stat-label">合計</div></div>
-          <div class="stat-card"><div class="stat-num" id="stat-cats">0</div><div class="stat-label">カテゴリ</div></div>
-          <div class="stat-card"><div class="stat-num" id="stat-friends">0</div><div class="stat-label">フレンド</div></div>
-        </div>
-        <button class="logout-btn" id="btn-logout">ログアウト</button>
+        <button class="lo-btn" id="btn-logout">ログアウト</button>
       </div>
     </div>
     <nav class="bottom-nav">
-      <div class="nav-item active" id="nav-home" data-tab="home"><div class="nav-icon">📖</div><div class="nav-label">ずかん</div></div>
-      <div class="nav-item" id="nav-friends" data-tab="friends"><div class="nav-icon">👥</div><div class="nav-label">フレンド</div></div>
-      <div class="nav-item" id="nav-profile" data-tab="profile"><div class="nav-icon">🌿</div><div class="nav-label">じぶん</div></div>
+      <button class="nav-btn active" id="nav-home" data-tab="home"><div class="nav-icon">📖</div><div class="nav-label">ずかん</div></button>
+      <button class="nav-btn" id="nav-friends" data-tab="friends"><div class="nav-icon">👥</div><div class="nav-label">フレンド</div></button>
+      <button class="nav-btn" id="nav-profile" data-tab="profile"><div class="nav-icon">🌿</div><div class="nav-label">じぶん</div></button>
     </nav>
   </div>
-  <div class="modal-overlay hidden" id="add-cat-modal">
-    <div class="modal-sheet">
+  <div class="modal hidden" id="modal-cat">
+    <div class="modal-inner">
       <div class="modal-title">カテゴリを追加</div>
-      <div class="field-label">アイコン</div>
-      <div class="modal-emoji-grid" id="emoji-grid"></div>
-      <div class="field-label">なまえ</div>
-      <input class="field-input" id="cat-name-input" placeholder="例：むし、ねこ、空の色">
-      <button class="btn-primary" id="btn-add-category">追加する</button>
+      <div class="lbl">アイコン</div>
+      <div class="emoji-grid" id="e-grid"></div>
+      <div class="lbl">なまえ</div>
+      <input class="tinp" id="cat-inp" placeholder="例：むし、ねこ、空の色">
+      <button class="btn" id="btn-add-cat">追加する</button>
     </div>
   </div>
   <div class="toast" id="toast"></div>
 </div>
 <script>
-const DB={getUsers(){return JSON.parse(localStorage.getItem('zukan_users')||'[]');},saveUsers(u){localStorage.setItem('zukan_users',JSON.stringify(u));},getUserData(n){return JSON.parse(localStorage.getItem('zukan_data_'+n)||'null');},saveUserData(n,d){localStorage.setItem('zukan_data_'+n,JSON.stringify(d));},getCurrentUser(){return localStorage.getItem('zukan_current')||null;},setCurrentUser(n){localStorage.setItem('zukan_current',n);},clearCurrentUser(){localStorage.removeItem('zukan_current');}};
+const DB={get(){return JSON.parse(localStorage.getItem('zu')||'[]');},set(v){localStorage.setItem('zu',JSON.stringify(v));},gd(n){return JSON.parse(localStorage.getItem('zd_'+n)||'null');},sd(n,d){localStorage.setItem('zd_'+n,JSON.stringify(d));},gc(){return localStorage.getItem('zc')||null;},sc(n){localStorage.setItem('zc',n);},cc(){localStorage.removeItem('zc');}};
 const DC=[{id:'hana',emoji:'🌸',name:'おはな',slots:20,items:[]},{id:'kumo',emoji:'☁️',name:'そら・くも',slots:15,items:[]},{id:'food',emoji:'🍽️',name:'たべもの',slots:30,items:[]},{id:'place',emoji:'🏛️',name:'いったばしょ',slots:20,items:[]}];
 const PE=['🌸','🌿','🍂','🐝','🦋','🐚','☁️','⭐','🌙','🌈','🍜','🍩','🎂','🍵','🏛️','⛩️','🏖️','🏔️','📚','🎨','🎵','🐈','🐕','🦊','🌺','🍄'];
 let CU=null,UD=null,CCI=null,SE=PE[0],PD=null;
-function gc(id){return document.getElementById(id);}
-function on(el,fn){if(!el)return;el.onclick=fn;}
-function init(){const s=DB.getCurrentUser();if(s){const d=DB.getUserData(s);if(d){login(s,d);return;}}showLogin();on(gc('btn-create-user'),createUser);gc('new-name-input').addEventListener('keydown',e=>{if(e.key==='Enter')createUser();});}
-function showLogin(){gc('login-screen').classList.remove('hidden');gc('main-screen').classList.add('hidden');renderUsers();}
-function renderUsers(){const us=DB.getUsers();const sec=gc('existing-users-section');const list=gc('user-list');if(!us.length){sec.classList.add('hidden');return;}sec.classList.remove('hidden');list.innerHTML='';us.forEach(u=>{const d=DB.getUserData(u);const c=d?d.categories.reduce((s,c)=>s+c.items.length,0):0;const el=document.createElement('div');el.className='user-item';el.innerHTML=`<div class="user-avatar">${u[0].toUpperCase()}</div><div><div class="user-name">${u}</div><div class="user-count">${c}こ集めた</div></div>`;on(el,()=>login(u));list.appendChild(el);});}
-function genCode(n){let h=0;for(let i=0;i<n.length;i++)h=((h<<5)-h)+n.charCodeAt(i);return Math.abs(h).toString(36).toUpperCase().slice(0,6).padStart(6,'0');}
-function createUser(){const n=gc('new-name-input').value.trim();if(!n){toast('なまえを入力してね');return;}const us=DB.getUsers();if(us.includes(n)){toast('そのなまえはもう使われてるよ');return;}const d={name:n,code:genCode(n),categories:JSON.parse(JSON.stringify(DC)),friends:[{name:'公式',code:'OFFICIAL',avatar:'📖',status:'今週のお題：春のもの'}],createdAt:Date.now()};us.push(n);DB.saveUsers(us);DB.saveUserData(n,d);login(n,d);}
-function login(n,d){if(!d)d=DB.getUserData(n);CU=n;UD=d;DB.setCurrentUser(n);gc('login-screen').classList.add('hidden');gc('main-screen').classList.remove('hidden');gc('new-name-input').value='';bindMain();tab('home');}
-function bindMain(){document.querySelectorAll('.nav-item').forEach(el=>{on(el,()=>tab(el.dataset.tab));});on(gc('btn-back-cat'),()=>tab('home'));on(gc('btn-back-reg'),()=>showCat(CCI));on(gc('photo-area'),()=>gc('camera-input').click());gc('camera-input').onchange=handlePhoto;on(gc('btn-save-item'),saveItem);on(gc('btn-logout'),()=>{DB.clearCurrentUser();CU=null;UD=null;showLogin();});on(gc('btn-add-friend'),addFriend);on(gc('btn-add-category'),addCat);on(gc('add-cat-modal'),e=>{if(e.target.id==='add-cat-modal')gc('add-cat-modal').classList.add('hidden');});}
-function save(){DB.saveUserData(CU,UD);}
-function tab(t){document.querySelectorAll('.tab-content').forEach(el=>el.classList.add('hidden'));document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));const te=gc('tab-'+t);const ne=gc('nav-'+t);if(te)te.classList.remove('hidden');if(ne)ne.classList.add('active');if(t==='home')renderHome();if(t==='friends')renderFriends();if(t==='profile')renderProfile();}
-function renderHome(){gc('home-title').textContent=CU+'のずかん';const tot=UD.categories.reduce((s,c)=>s+c.items.length,0);gc('home-sub').textContent=tot+'こ集めた';const g=gc('cat-grid');g.innerHTML='';UD.categories.forEach(c=>{const p=Math.round(c.items.length/c.slots*100);const el=document.createElement('div');el.className='cat-card';el.innerHTML=`<span class="cat-emoji">${c.emoji}</span><span class="cat-name">${c.name}</span><span class="cat-count">${c.items.length} / ${c.slots}</span><div class="pbar-wrap"><div class="pbar-fill" style="width:${p}%"></div></div>`;on(el,()=>showCat(c.id));g.appendChild(el);});const a=document.createElement('div');a.className='cat-card cat-add';a.innerHTML='<span class="cat-add-icon">＋</span><span class="cat-add-text">カテゴリを追加</span>';on(a,openModal);g.appendChild(a);}
-function showCat(id){CCI=id;const c=UD.categories.find(x=>x.id===id);document.querySelectorAll('.tab-content').forEach(el=>el.classList.add('hidden'));gc('tab-cat').classList.remove('hidden');gc('cat-detail-emoji').textContent=c.emoji;gc('cat-detail-name').textContent=c.name;gc('cat-detail-meta').textContent=c.items.length+'こ集めた　あと'+(c.slots-c.items.length)+'こ空白';gc('cat-detail-pbar').style.width=Math.round(c.items.length/c.slots*100)+'%';const g=gc('slot-grid');g.innerHTML='';c.items.forEach(item=>{const el=document.createElement('div');el.className='slot filled';el.innerHTML=item.photo?`<img class="slot-img" src="${item.photo}"><div class="slot-label">${item.name}</div>`:`<div class="slot-emoji-display">${c.emoji}</div><div class="slot-label">${item.name}</div>`;g.appendChild(el);});const em=c.slots-c.items.length;for(let i=0;i<Math.min(em,9);i++){const el=document.createElement('div');if(i===0){el.className='slot empty empty-add';el.innerHTML='<span class="slot-plus">＋</span>';on(el,showReg);}else{el.className='slot empty';el.innerHTML='<span class="slot-dot">・</span>';}g.appendChild(el);}}
-function showReg(){PD=null;gc('photo-preview').classList.add('hidden');gc('photo-area').classList.remove('taken');gc('reg-name').value='';gc('reg-memo').value='';document.querySelectorAll('.tab-content').forEach(el=>el.classList.add('hidden'));gc('tab-register').classList.remove('hidden');}
-function handlePhoto(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{PD=ev.target.result;gc('photo-preview').src=PD;gc('photo-preview').classList.remove('hidden');gc('photo-area').classList.add('taken');};r.readAsDataURL(f);e.target.value='';}
-function saveItem(){const n=gc('reg-name').value.trim();if(!n){toast('なまえをつけてね');return;}const c=UD.categories.find(x=>x.id===CCI);c.items.push({name:n,memo:gc('reg-memo').value.trim(),photo:PD,date:new Date().toLocaleDateString('ja-JP')});save();toast('追加したよ！');setTimeout(()=>showCat(CCI),600);}
-function openModal(){SE=PE[0];gc('cat-name-input').value='';const g=gc('emoji-grid');g.innerHTML='';PE.forEach((e,i)=>{const b=document.createElement('button');b.className='emoji-btn'+(i===0?' selected':'');b.textContent=e;on(b,()=>{SE=e;document.querySelectorAll('.emoji-btn').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');});g.appendChild(b);});gc('add-cat-modal').classList.remove('hidden');}
-function addCat(){const n=gc('cat-name-input').value.trim();if(!n){toast('なまえを入力してね');return;}UD.categories.push({id:'c'+Date.now(),emoji:SE,name:n,slots:20,items:[]});save();gc('add-cat-modal').classList.add('hidden');renderHome();toast(`「${n}」を追加したよ`);}
-function renderFriends(){gc('my-friend-code').textContent=UD.code;const l=gc('friends-list');l.innerHTML='';const bc=['#EEEDFE','#E1F5EE','#FAEEDA','#FAECE7'];const tc=['#3C3489','#085041','#633806','#712B13'];UD.friends.forEach((f,i)=>{const el=document.createElement('div');el.className='friend-card';el.innerHTML=`<div class="friend-avatar" style="background:${bc[i%4]};color:${tc[i%4]}">${f.avatar||f.name[0]}</div><div><div class="friend-name">${f.name}</div><div class="friend-status">${f.status||'フレンド'}</div></div>`;l.appendChild(el);});}
-function addFriend(){const code=gc('friend-code-input').value.trim().toUpperCase();if(!code){toast('コードを入力してね');return;}const us=DB.getUsers();let found=null;for(const u of us){const d=DB.getUserData(u);if(d&&d.code===code){found=d;break;}}if(!found){toast('見つからなかったよ');return;}if(found.name===CU){toast('自分のコードだよ');return;}if(UD.friends.some(f=>f.code===code)){toast('もう追加済みだよ');return;}UD.friends.push({name:found.name,code:found.code,avatar:found.name[0],status:'フレンド'});save();gc('friend-code-input').value='';renderFriends();toast(found.name+'さんと繋がったよ！');}
-function renderProfile(){if(!UD)return;gc('profile-avatar').textContent=CU[0].toUpperCase();gc('profile-name-display').textContent=CU;gc('profile-code-display').textContent='コード：'+UD.code;const t=UD.categories.reduce((s,c)=>s+c.items.length,0);gc('stat-total').textContent=t;gc('stat-cats').textContent=UD.categories.length;gc('stat-friends').textContent=UD.friends.length;}
-function toast(msg){const t=gc('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);}
+const $=id=>document.getElementById(id);
+function init(){const s=DB.gc();if(s){const d=DB.gd(s);if(d){doLogin(s,d);return;}}showLogin();}
+function showLogin(){$('s-login').classList.remove('hidden');$('s-main').classList.add('hidden');renderUsers();$('btn-start').onclick=createUser;$('inp-name').onkeydown=e=>{if(e.key==='Enter')createUser();};}
+function renderUsers(){const us=DB.get();const sec=$('s-users');const list=$('user-list');if(!us.length){sec.classList.add('hidden');return;}sec.classList.remove('hidden');list.innerHTML='';us.forEach(u=>{const d=DB.gd(u);const c=d?d.categories.reduce((s,c)=>s+c.items.length,0):0;const b=document.createElement('button');b.className='user-btn';b.innerHTML=`<div class="user-av">${u[0].toUpperCase()}</div><div><div class="user-name">${u}</div><div class="user-count">${c}こ集めた</div></div>`;b.onclick=()=>doLogin(u);list.appendChild(b);});}
+function gc(n){let h=0;for(let i=0;i<n.length;i++)h=((h<<5)-h)+n.charCodeAt(i);return Math.abs(h).toString(36).toUpperCase().slice(0,6).padStart(6,'0');}
+function createUser(){const n=$('inp-name').value.trim();if(!n){toast('なまえを入力してね');return;}const us=DB.get();if(us.includes(n)){toast('そのなまえはもう使われてるよ');return;}const d={name:n,code:gc(n),categories:JSON.parse(JSON.stringify(DC)),friends:[{name:'公式',code:'OFFICIAL',avatar:'📖',status:'今週のお題：春のもの'}],createdAt:Date.now()};us.push(n);DB.set(us);DB.sd(n,d);doLogin(n,d);}
+function doLogin(n,d){if(!d)d=DB.gd(n);CU=n;UD=d;DB.sc(n);$('s-login').classList.add('hidden');$('s-main').classList.remove('hidden');$('inp-name').value='';bindMain();goTab('home');}
+function bindMain(){document.querySelectorAll('.nav-btn[data-tab]').forEach(b=>{b.onclick=()=>goTab(b.dataset.tab);});$('btn-back-cat').onclick=()=>goTab('home');$('btn-back-reg').onclick=()=>showCat(CCI);$('photo-btn').onclick=()=>$('cam').click();$('cam').onchange=handlePhoto;$('btn-save').onclick=saveItem;$('btn-logout').onclick=()=>{DB.cc();CU=null;UD=null;showLogin();};$('btn-add-fr').onclick=addFriend;$('btn-add-cat').onclick=addCat;$('modal-cat').onclick=e=>{if(e.target.id==='modal-cat')$('modal-cat').classList.add('hidden');};}
+function sv(){DB.sd(CU,UD);}
+function goTab(t){document.querySelectorAll('.tab-content').forEach(e=>e.classList.add('hidden'));document.querySelectorAll('.nav-btn').forEach(e=>e.classList.remove('active'));const te=$('t-'+t);const ne=$('nav-'+t);if(te)te.classList.remove('hidden');if(ne)ne.classList.add('active');if(t==='home')renderHome();if(t==='friends')renderFriends();if(t==='profile')renderProfile();}
+function renderHome(){$('h-title').textContent=CU+'のずかん';const tot=UD.categories.reduce((s,c)=>s+c.items.length,0);$('h-sub').textContent=tot+'こ集めた';const g=$('cat-grid');g.innerHTML='';UD.categories.forEach(c=>{const p=Math.round(c.items.length/c.slots*100);const b=document.createElement('button');b.className='cat-btn';b.innerHTML=`<span class="cat-emoji">${c.emoji}</span><span class="cat-name">${c.name}</span><span class="cat-count">${c.items.length} / ${c.slots}</span><div class="pbar"><div class="pfill" style="width:${p}%"></div></div>`;b.onclick=()=>showCat(c.id);g.appendChild(b);});const a=document.createElement('button');a.className='cat-btn cat-add';a.innerHTML='<span style="font-size:20px;color:var(--t3)">＋</span><span>カテゴリを追加</span>';a.onclick=openModal;g.appendChild(a);}
+function showCat(id){CCI=id;const c=UD.categories.find(x=>x.id===id);document.querySelectorAll('.tab-content').forEach(e=>e.classList.add('hidden'));$('t-cat').classList.remove('hidden');$('c-emoji').textContent=c.emoji;$('c-name').textContent=c.name;$('c-meta').textContent=c.items.length+'こ集めた　あと'+(c.slots-c.items.length)+'こ空白';$('c-pbar').style.width=Math.round(c.items.length/c.slots*100)+'%';const g=$('slot-grid');g.innerHTML='';c.items.forEach(item=>{const el=document.createElement('div');el.className='slot filled';el.innerHTML=item.photo?`<img class="slot-img" src="${item.photo}"><div class="slot-label">${item.name}</div>`:`<div class="slot-emoji">${c.emoji}</div><div class="slot-label">${item.name}</div>`;g.appendChild(el);});const em=c.slots-c.items.length;for(let i=0;i<Math.min(em,9);i++){if(i===0){const b=document.createElement('button');b.className='slot-add';b.textContent='＋';b.onclick=showReg;g.appendChild(b);}else{const el=document.createElement('div');el.className='slot empty';el.innerHTML='<span style="font-size:16px;color:var(--t3);opacity:0.4">・</span>';g.appendChild(el);}}}
+function showReg(){PD=null;$('photo-prev').classList.add('hidden');$('photo-btn').classList.remove('taken');$('reg-name').value='';$('reg-memo').value='';document.querySelectorAll('.tab-content').forEach(e=>e.classList.add('hidden'));$('t-reg').classList.remove('hidden');}
+function handlePhoto(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{PD=ev.target.result;$('photo-prev').src=PD;$('photo-prev').classList.remove('hidden');$('photo-btn').classList.add('taken');};r.readAsDataURL(f);e.target.value='';}
+function saveItem(){const n=$('reg-name').value.trim();if(!n){toast('なまえをつけてね');return;}const c=UD.categories.find(x=>x.id===CCI);c.items.push({name:n,memo:$('reg-memo').value.trim(),photo:PD,date:new Date().toLocaleDateString('ja-JP')});sv();toast('追加したよ！');setTimeout(()=>showCat(CCI),600);}
+function openModal(){SE=PE[0];$('cat-inp').value='';const g=$('e-grid');g.innerHTML='';PE.forEach((e,i)=>{const b=document.createElement('button');b.className='e-btn'+(i===0?' on':'');b.textContent=e;b.onclick=()=>{SE=e;document.querySelectorAll('.e-btn').forEach(x=>x.classList.remove('on'));b.classList.add('on');};g.appendChild(b);});$('modal-cat').classList.remove('hidden');}
+function addCat(){const n=$('cat-inp').value.trim();if(!n){toast('なまえを入力してね');return;}UD.categories.push({id:'c'+Date.now(),emoji:SE,name:n,slots:20,items:[]});sv();$('modal-cat').classList.add('hidden');renderHome();toast(`「${n}」を追加したよ`);}
+function renderFriends(){$('my-code').textContent=UD.code;const l=$('fr-list');l.innerHTML='';const bc=['#EEEDFE','#E1F5EE','#FAEEDA','#FAECE7'];const tc=['#3C3489','#085041','#633806','#712B13'];UD.friends.forEach((f,i)=>{const el=document.createElement('div');el.className='fr-card';el.innerHTML=`<div class="fr-av" style="background:${bc[i%4]};color:${tc[i%4]}">${f.avatar||f.name[0]}</div><div><div class="fr-name">${f.name}</div><div class="fr-status">${f.status||'フレンド'}</div></div>`;l.appendChild(el);});}
+function addFriend(){const code=$('fr-inp').value.trim().toUpperCase();if(!code){toast('コードを入力してね');return;}const us=DB.get();let found=null;for(const u of us){const d=DB.gd(u);if(d&&d.code===code){found=d;break;}}if(!found){toast('見つからなかったよ');return;}if(found.name===CU){toast('自分のコードだよ');return;}if(UD.friends.some(f=>f.code===code)){toast('もう追加済みだよ');return;}UD.friends.push({name:found.name,code:found.code,avatar:found.name[0],status:'フレンド'});sv();$('fr-inp').value='';renderFriends();toast(found.name+'さんと繋がったよ！');}
+function renderProfile(){if(!UD)return;$('p-av').textContent=CU[0].toUpperCase();$('p-name').textContent=CU;$('p-code').textContent='コード：'+UD.code;const t=UD.categories.reduce((s,c)=>s+c.items.length,0);$('st-tot').textContent=t;$('st-cat').textContent=UD.categories.length;$('st-fr').textContent=UD.friends.length;}
+function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);}
 init();
 </script>
 </body>
